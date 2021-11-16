@@ -10,15 +10,18 @@
     "@types/node": "^12.20.37",
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
+    "@web3-react/core": "latest",
+    "@web3-react/injected-connector": "latest",
+    "@web3-react/types": "latest",
+    "@ethersproject/providers": "^5.1.2",
+    "@ethersproject/units": "^5.1.0",
     "antd": "^4.16.13",
+    "node-sass": "^6.0.1",
     "prettier": "^2.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "typescript": "^4.4.4",
-    "@web3-react/core": "latest",
-    "@web3-react/injected-connector": "latest",
-    "@web3-react/types": "latest"
+    "typescript": "^4.4.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,6 +34,11 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 80
   },
   "browserslist": {
     "production": [

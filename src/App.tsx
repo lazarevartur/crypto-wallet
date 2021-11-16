@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
-import LoginForm from './components/LoginForm';
-import { Layout } from "antd";
+import { useWeb3React } from '@web3-react/core';
+import LoginForm from './components/loginForm';
+import MainLayout from './components/layout/mainLayout';
+import UserAccount from './components/userAccount';
 
 function App() {
+  const { active } = useWeb3React()
   return (
-    <Layout>
-      <Layout.Content>
-        <LoginForm />
-      </Layout.Content>
-    </Layout>
+    <MainLayout>
+      {active ? <UserAccount /> : <LoginForm />}
+    </MainLayout>
   );
 }
 
