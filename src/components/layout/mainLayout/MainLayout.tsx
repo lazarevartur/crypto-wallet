@@ -2,7 +2,9 @@ import { Card, Layout, Row } from 'antd';
 import React, { FC, memo } from 'react';
 import styles from './mainLayout.module.css';
 
-const MainLayout: FC = (props) => {
+interface Props { }
+
+const MainLayout: FC<Props> = (props) => {
 
   return (
     <Layout>
