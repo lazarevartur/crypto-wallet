@@ -1,8 +1,9 @@
 import { Button, Descriptions, Form, Input, Spin, Modal, message } from 'antd'
 import { fromWei } from 'web3-utils'
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import Web3ContractService, { IContractResponse, IError } from '../../services/web3Service'
 import ContractInfo from './contractInfo'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
     account: string | null | undefined,
@@ -14,6 +15,7 @@ interface formComplete {
 }
 
 const SmartContractForm: FC<Props> = ({ account, formCompleted }) => {
+    const { t } = useTranslation();
     const [countTokens, setCountTokens] = React.useState<null | string>(null)
     const [isLoading, setIsLoading] = React.useState<boolean>(false)
     const [contractInfo, setContractInfo] = React.useState<IContractResponse | null>(null)
@@ -22,7 +24,7 @@ const SmartContractForm: FC<Props> = ({ account, formCompleted }) => {
     React.useEffect(() => {
         if (contractInfo) {
             Modal.info({
-                title: 'Информация о блоке',
+                title: t('SmartContractForm.blockInfo'),
                 content: <ContractInfo contract={contractInfo} />,
                 onOk() { },
             });
@@ -63,14 +65,14 @@ const SmartContractForm: FC<Props> = ({ account, formCompleted }) => {
         console.log('onFinishFailed', { e });
     }
     return (
-        <Descriptions title="Смарт контракт" bordered column={1} size={'small'}>
-            <Descriptions.Item label="Количество токенов" >
+        <Descriptions title={t('SmartContractForm.smartContract')} bordered column={1} size={'small'}>
+            <Descriptions.Item label={t('SmartContractForm.countTokens')} >
                 {countTokens ? `${countTokens} eth` : <Button type="primary" htmlType="button" onClick={getBalance}>
-                    Проверить кол-во токенов
+                    {t('SmartContractForm.checkTokens')}
                 </Button>}
 
             </Descriptions.Item>
-            <Descriptions.Item label="Введите сумму токенов для минта токенов">
+            <Descriptions.Item label={t('SmartContractForm.mintSumInput')}>
                 {isLoading ? <Spin /> : <Form
                     name="basic"
                     initialValues={{ remember: true }}
@@ -80,7 +82,7 @@ const SmartContractForm: FC<Props> = ({ account, formCompleted }) => {
                 >
                     <Form.Item
                         name="tokens"
-                        rules={[{ required: true, message: 'Please input your tokens!' }]}
+                        rules={[{ required: true, message: t('SmartContractForm.ErrmintSumInput') }]}
                         style={{ width: 190 }}
                     >
                         <Input size={'large'} />
@@ -97,4 +99,4 @@ const SmartContractForm: FC<Props> = ({ account, formCompleted }) => {
     )
 }
 
-export default SmartContractForm
+export default memo(SmartContractForm)

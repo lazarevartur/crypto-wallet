@@ -1,7 +1,8 @@
-import React, { FC, ReactElement } from 'react'
-import { useWeb3React } from '@web3-react/core'
-import { Button, Typography, Image, Divider, Space, message } from 'antd'
 import { Web3Provider } from '@ethersproject/providers'
+import { useWeb3React } from '@web3-react/core'
+import { Button, Divider, Image, message, Space } from 'antd'
+import React, { FC, memo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { injected } from '../../config/Web3React/connectors'
 
 interface Props {
@@ -11,29 +12,30 @@ interface Props {
 const LoginForm: FC<Props> = (props: Props) => {
 
   const { activate, library, error, account, deactivate } = useWeb3React<Web3Provider>()
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     if (error) {
-      message.warning('Обработка запроса, если в течение 15 сек нету ответа, то перезагрузите страницу и попробуйте еще раз.');
+      message.warning(t('LoginForm.warning'));
     }
   }, [error])
 
   return (
     <>
-      <h2>Авторизация <Image
+      <h2>{t('LoginForm.title')} <Image
         src='https://docs.metamask.io/metamask-fox.svg'
         preview={false}
         width={16} />
       </h2>
       <Divider />
-      <p>Для работы с веб-приложением необходимо подключить и авторизоваться в кошельке {' '}
+      <p>{t('LoginForm.description')} {' '}
         <a href='https://metamask.io/' target='_blank' rel="noreferrer">MetaMask</a>
       </p>
       <Space direction={'vertical'}>
         <Button type="primary" htmlType="button" onClick={() => {
           activate(injected)
         }}>
-          Войти
+          {t('LoginForm.login')}
         </Button>
       </Space>
 
@@ -42,4 +44,4 @@ const LoginForm: FC<Props> = (props: Props) => {
   )
 }
 
-export default LoginForm
+export default memo(LoginForm)

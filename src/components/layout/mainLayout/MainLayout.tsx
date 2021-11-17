@@ -1,8 +1,9 @@
-import React, { FC, ReactNode } from 'react'
-import { Card, Layout, Row } from 'antd'
-import styles from './mainLayout.module.css'
+import { Card, Layout, Row } from 'antd';
+import React, { FC, memo } from 'react';
+import styles from './mainLayout.module.css';
 
 const MainLayout: FC = (props) => {
+
   return (
     <Layout>
       <Layout.Content>
@@ -18,4 +19,4 @@ const MainLayout: FC = (props) => {
   )
 }
 
-export default MainLayout
+export default memo(MainLayout)

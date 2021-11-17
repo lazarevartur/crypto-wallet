@@ -1,0 +1,23 @@
+{
+    "LoginForm": {
+        "warning": "Request processing, if there is no response within 15 seconds, then reload the page and try again",
+        "title" : "Authorization",
+        "description"  :"To work with the web application, you need to connect and log in to the wallet",
+        "login" : "Login"
+    },
+    "UserAccount" : {
+        "userInfo" :"Information about users",
+        "address" : "User address",
+        "balance" : "Balance",
+        "connectContract": "Connect smart contract",
+        "logout" : "logout"
+    },
+    "SmartContractForm" : {
+        "blockInfo": "Block information",
+        "smartContract": "Smart contract",
+        "mintSumInput": "Enter the amount of tokens for minta tokens",
+        "checkTokens" : "Check the number of tokens",
+        "countTokens": "Number of tokens",
+        "ErrmintSumInput" : "Enter the amount of tokens for minta tokens"
+    }
+}

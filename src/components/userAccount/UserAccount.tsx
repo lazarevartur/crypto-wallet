@@ -4,6 +4,7 @@ import { formatEther } from '@ethersproject/units'
 import React, { FC } from 'react'
 import { Web3Provider } from '@ethersproject/providers'
 import SmartContractForm from '../smartContractForm/SmartContractForm'
+import { useTranslation } from 'react-i18next'
 
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 
 const UserAccount: FC = (props: Props) => {
   const { account, deactivate, library, } = useWeb3React<Web3Provider>()
+  const { t } = useTranslation();
 
   const [balance, setBalance] = React.useState<string>("0")
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
@@ -56,23 +58,23 @@ const UserAccount: FC = (props: Props) => {
 
   return (
     <Space direction="vertical">
-      <Descriptions title="Информация о пользователи" bordered column={1}>
-        <Descriptions.Item label="Адрес пользователя">
+      <Descriptions title={t('UserAccount.userInfo')} bordered column={1}>
+        <Descriptions.Item label={t('UserAccount.address')}>
           {account && `${account.substring(0, 6)}...${account.substring(account.length - 4)}`}
         </Descriptions.Item>
-        <Descriptions.Item label="Баланс">{balance && !isLoading ? `${balance} eth` : <Spin />}</Descriptions.Item>
+        <Descriptions.Item label={t('UserAccount.balance')}>{balance && !isLoading ? `${balance} eth` : <Spin />}</Descriptions.Item>
       </Descriptions>
       {
         connectSmartContract ? <SmartContractForm account={account} formCompleted={handlerRefreshBalance} />
           : <Button type="primary" htmlType="button" onClick={() => {
             setConnectSmartContract(true)
           }}>
-            Подключить смарт контракт
+            {t('UserAccount.connectContract')}
           </Button>}
       <Button type="primary" htmlType="button" onClick={() => {
         deactivate()
       }}>
-        Выйти
+        {t('UserAccount.logout')}
       </Button>
     </Space>
 
