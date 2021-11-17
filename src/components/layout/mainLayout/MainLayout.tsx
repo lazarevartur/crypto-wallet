@@ -8,7 +8,7 @@ const MainLayout: FC = (props) => {
       <Layout.Content>
         <Row justify='center' align={"middle"} className={styles.d_center} >
           <div className={styles.site_card_border_less_wrapper}>
-            <Card bordered={false} style={{ width: 400 }}>
+            <Card bordered={false} style={{ width: 440 }}>
               {props.children}
             </Card>
           </div>

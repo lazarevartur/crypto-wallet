@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { useWeb3React } from '@web3-react/core';
-import LoginForm from './components/loginForm';
-import MainLayout from './components/layout/mainLayout';
-import UserAccount from './components/userAccount';
+import LoginForm from './components/loginForm/LoginForm';
+import MainLayout from './components/layout/mainLayout/MainLayout';
+import UserAccount from './components/userAccount/UserAccount';
 
 function App() {
   const { active } = useWeb3React()
